@@ -7,7 +7,7 @@ interface ButtonProps extends TouchableOpacityProps {
   icon?: IconProps;
   size?: number;
   format?: "pill" | "full-rounded";
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "ghost";
 }
 
 export function Button({
@@ -24,15 +24,22 @@ export function Button({
       {...rest}
       activeOpacity={0.9}
       className={`p-3 rounded-full
-        ${format === "full-rounded" && "aspect-square"} 
+        ${format === "full-rounded" && "aspect-square"}
         ${variant === "primary" && " bg-purple-primary gap-2 flex-row items-center w-max justify-center"}
         ${variant === "secondary" && " bg-gray-quaternary gap-2 flex-row items-center w-max justify-center border border-gray-secondary"}
-      `}
+        ${variant === "ghost" && " bg-transparent gap-2 flex-row items-center w-max justify-center"}
+        `}
     >
       {IconComponent ? (
         <IconComponent
           size={size}
-          color={variant === "primary" ? "#fff" : "#6a46eb"}
+          color={
+            variant === "primary"
+              ? "#fff"
+              : variant === "ghost"
+                ? "#000"
+                : "#6a46eb"
+          }
         />
       ) : null}
       {title ? (
