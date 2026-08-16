@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "./global.css";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { FilterProvider } from "./src/context/filter-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { Routes } from "./src/routes";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <FilterProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <Routes />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+      </FilterProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
