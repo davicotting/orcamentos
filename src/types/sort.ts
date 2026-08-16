@@ -1,0 +1,1 @@
+export type SORT = "RECENT" | "OLD" | "HIGH" | "LOW";
